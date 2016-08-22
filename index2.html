@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://sandbox.runjs.cn/uploads/rs/314/hn3kbjwn/swiper.min.css">
+    <script type="text/javascript" src="http://sandbox.runjs.cn/uploads/rs/314/hn3kbjwn/swiper.min.js"></script>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-container {
+    margin-top: 40px;
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    perspective: 1200px;
+    width: 100%;
+    height: 60%
+}
+
+.swiper-slide {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    width: 50%;
+    opacity: 0.5;
+    margin:0 -20%;
+}
+
+.swiper-slide-active {
+    opacity: 1
+}
+
+.imgsCon {
+    width: 80%;
+    height: 100%;
+    background: #555;
+    border-radius: 6px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 100px;
+    font-size: 40px;
+    color: #fff
+}
+
+.swiper-pagination {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.swiper-pagination span {
+    margin: 0 5px;
+}
+</style>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="imgsCon">1</div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgsCon">2</div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgsCon">3</div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgsCon">4</div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgsCon">5</div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgsCon">6</div>
+            </div>
+            <div class="swiper-slide">
+                <div class="imgsCon">6</div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-pagination" id="pagination"></div>
+</body>
+<script src=""></script>
+<script>
+var mySwiper = new Swiper(".swiper-container", {
+	initialSlide:3,
+	autoplay : 2000,
+    slidesPerView: "auto",
+    centeredSlides: true,
+    watchSlidesProgress: true,
+    pagination: ".swiper-pagination",
+    paginationClickable: true,
+    onProgress: function(a) {
+        var b, c, d;
+        for (b = 0; b < a.slides.length; b++) {
+            c = a.slides[b];
+            d = c.progress;
+            console.log(d);
+            c.style.webkitTransform = c.style.MozTransform = c.style.transform = "translate3d(0px,0," + -Math.abs(150 * d) + "px)";
+        };
+    },
+    onSetTransition: function(a, b) {
+        for (var c = 0; c < a.slides.length; c++) {
+            var style = a.slides[c].style;
+            style.webkitTransitionDuration = style.MozTransitionDuration = style.transitionDuration = b + "ms";
+            console.log(b)
+        };
+    }
+});
+</script>
+
+</html>
